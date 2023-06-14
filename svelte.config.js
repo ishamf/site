@@ -1,18 +1,41 @@
 import adapter from '@sveltejs/adapter-auto';
+import { mdsvex } from 'mdsvex';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import yaml from 'js-yaml';
+
+export function htmlCommentIgnoringFormatter(value, messages) {
+	try {
+		// Remove html comments used to ignore prettier
+		return yaml.load(value.replace(/^<!--.*$/mg, ''));
+	} catch (e) {
+		messages.push('YAML failed to parse');
+	}
+}
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: vitePreprocess(),
+	preprocess: [
+		vitePreprocess(),
+		mdsvex({
+			extensions: ['.mdx'],
+			frontmatter: {
+				parse: htmlCommentIgnoringFormatter,
+				type: 'yaml',
+				marker: '-',
+			},
+		}),
+	],
+
+	extensions: ['.svelte', '.mdx'],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
-		adapter: adapter()
-	}
+		adapter: adapter(),
+	},
 };
 
 export default config;
