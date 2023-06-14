@@ -1,0 +1,47 @@
+diff --git a/plugin.js b/plugin.js
+index bcb248eea942c0c21538479d7b566e0ddbc2f15a..58add663ebe52967982a90f4c38f67d15e20b1ea 100644
+--- a/plugin.js
++++ b/plugin.js
+@@ -931,7 +931,7 @@ function print(path, options, print) {
+                 return groupConcat(path.map(print, 'children'));
+             }
+         case 'Text':
+-            if (!isPreTagContent(path)) {
++            if (!isPreTagContent(path) && false) {
+                 if (isEmptyTextNode(node)) {
+                     const hasWhiteSpace = getUnencodedText(node).trim().length < getUnencodedText(node).length;
+                     const hasOneOrMoreNewlines = /\n/.test(getUnencodedText(node));
+@@ -2109,14 +2109,14 @@ function locEnd(node) {
+ }
+ const languages = [
+     {
+-        name: 'svelte',
+-        parsers: ['svelte'],
+-        extensions: ['.svelte'],
+-        vscodeLanguageIds: ['svelte'],
++        name: 'svelte-customised-for-mdsvex',
++        parsers: ['svelte-customised-for-mdsvex'],
++        extensions: ['.svelte-customised-for-mdsvex'],
++        vscodeLanguageIds: ['svelte-customised-for-mdsvex'],
+     },
+ ];
+ const parsers = {
+-    svelte: {
++    'svelte-customised-for-mdsvex': {
+         hasPragma,
+         parse: (text) => {
+             try {
+@@ -2147,11 +2147,11 @@ const parsers = {
+         },
+         locStart,
+         locEnd,
+-        astFormat: 'svelte-ast',
++        astFormat: 'svelte-ast-customised-for-mdsvex',
+     },
+ };
+ const printers = {
+-    'svelte-ast': {
++    'svelte-ast-customised-for-mdsvex': {
+         print,
+         embed,
+     },

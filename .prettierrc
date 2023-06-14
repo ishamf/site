@@ -3,7 +3,7 @@
 	"singleQuote": true,
 	"trailingComma": "es5",
 	"printWidth": 100,
-	"plugins": ["prettier-plugin-svelte"],
+	"plugins": ["prettier-plugin-svelte", "prettier-plugin-svelte-customised-for-mdsvex"],
 	"pluginSearchDirs": ["."],
 	"htmlWhitespaceSensitivity": "strict",
 	"overrides": [
@@ -14,7 +14,7 @@
 		{
 			"files": "*.mdx",
 			"options": {
-				"parser": "svelte",
+				"parser": "svelte-customised-for-mdsvex",
 				"svelteSortOrder": "none",
 				"htmlWhitespaceSensitivity": "strict"
 			}

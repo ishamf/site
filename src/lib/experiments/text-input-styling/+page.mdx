@@ -28,7 +28,10 @@ title: Text Input Styling
 
 Using CSS, we can make the content of text inputs look identical to regular text.
 
-<input class="dark:bg-slate-900 p-1" bind:value={firstValue} />
+<input
+	class="dark:bg-slate-900 p-1"
+	bind:value={firstValue}
+/>
 
 <p>
 	<span class="p-1">{firstValue}</span>
@@ -36,14 +39,19 @@ Using CSS, we can make the content of text inputs look identical to regular text
 
 What if we put the text directly on the input element, and make the actual input text invisible?
 
-<CoveredInput bind:value={secondValue} rows={2}>
+<CoveredInput
+	bind:value={secondValue}
+	rows={2}
+>
 	{secondValue}
 </CoveredInput>
 
 This doesn't look like much now, but we can transform the value before rendering, adding
 `&lt;span&gt;`s to style each word differently.
 
-<CoveredInput bind:value={thirdValue} rows={3}
+<CoveredInput
+	bind:value={thirdValue}
+	rows={3}
 	>{#each transformedThirdValue as elem}{#if elem.style === 'normal'}{elem.text}{:else}<span
 				class="text-red-500">{elem.text}</span
 			>{/if}{/each}</CoveredInput
