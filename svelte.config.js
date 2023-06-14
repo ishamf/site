@@ -6,7 +6,7 @@ import yaml from 'js-yaml';
 export function htmlCommentIgnoringFormatter(value, messages) {
 	try {
 		// Remove html comments used to ignore prettier
-		return yaml.load(value.replace(/^<!--.*$/mg, ''));
+		return yaml.load(value.replace(/^<!--.*$/gm, ''));
 	} catch (e) {
 		messages.push('YAML failed to parse');
 	}

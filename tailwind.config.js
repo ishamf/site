@@ -2,7 +2,7 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts,mdx}'],
 	theme: {
-		extend: {}
+		extend: {},
 	},
-	plugins: [require('@tailwindcss/typography')]
+	plugins: [require('@tailwindcss/typography')],
 };

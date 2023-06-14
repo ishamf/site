@@ -1,11 +1,9 @@
 {
-    "files.associations": {
-        "*.mdx": "svelte"
-    },
-    "[svelte]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "prettier.documentSelectors": [
-        "**/*.svelte"
-    ]
+	"files.associations": {
+		"*.mdx": "svelte"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.documentSelectors": ["**/*.svelte"]
 }
