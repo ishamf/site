@@ -8,7 +8,7 @@
 		<slot />
 	</div>
 
-	<textarea {rows} class="dark:bg-slate-900 p-1 input" bind:value />
+	<textarea {rows} class="dark:bg-slate-900 bg-slate-100 p-1 input" bind:value />
 </div>
 
 <style>
