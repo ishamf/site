@@ -3,12 +3,12 @@
 	export let rows = 1;
 </script>
 
-<div class="container">
+<div class="container dark:bg-slate-900 bg-slate-100">
 	<div class="p-1 cover">
 		<slot />
 	</div>
 
-	<textarea {rows} class="dark:bg-slate-900 bg-slate-100 p-1 input" bind:value />
+	<textarea {rows} class="p-1 input bg-transparent" bind:value />
 </div>
 
 <style>
@@ -20,6 +20,8 @@
 	.input {
 		width: 100%;
 		color: rgba(0, 0, 0, 0);
+
+		position: relative;
 		resize: none;
 
 		/* Not exactly the right font color, but close enough */
