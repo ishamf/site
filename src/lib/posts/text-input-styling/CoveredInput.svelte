@@ -1,22 +1,32 @@
 <script lang="ts">
 	export let value: string;
 	export let rows = 1;
+	export let caretColor: 'white' | 'auto' = 'auto';
+
+	let textarea: HTMLTextAreaElement;
+	let cover: HTMLDivElement;
 </script>
 
-<div class="container dark:bg-slate-900 bg-slate-100">
-	<div class="p-1 cover">
-		<slot />
+<div class="flex relative dark:bg-slate-900 bg-slate-100">
+	<div class="p-1 cover" bind:this={cover}>
+		<slot />{' '}
 	</div>
 
-	<textarea {rows} class="p-1 input bg-transparent" bind:value />
+	<textarea
+		{rows}
+		class="p-1 input bg-transparent"
+		class:force-caret-white={caretColor === 'white'}
+		bind:value
+		bind:this={textarea}
+		on:scroll={() => {
+			if (!cover || !textarea) return;
+			cover.scrollTop = textarea.scrollTop;
+			cover.scrollLeft = textarea.scrollLeft;
+		}}
+	/>
 </div>
 
 <style>
-	.container {
-		position: relative;
-		width: 100%;
-	}
-
 	.input {
 		width: 100%;
 		color: rgba(0, 0, 0, 0);
@@ -34,16 +44,24 @@
 		}
 	}
 
+	.input.force-caret-white {
+		caret-color: #fff;
+	}
+
 	.cover {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		right: 0;
+		bottom: 0;
+	
 
 		white-space: pre-wrap;
+		overflow-wrap: anywhere;
 
 		/* Disable interactions */
 		pointer-events: none;
+
+		overflow: auto;
 	}
 </style>
