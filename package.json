@@ -44,5 +44,8 @@
 		"patchedDependencies": {
 			"prettier-plugin-svelte@2.10.0": "patches/prettier-plugin-svelte@2.10.0.patch"
 		}
+	},
+	"dependencies": {
+		"ajv": "^8.12.0"
 	}
 }
