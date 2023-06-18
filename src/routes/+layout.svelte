@@ -14,20 +14,27 @@
 				ishamf.com
 			</h1></a
 		>
-	
+
 		<slot />
 	</main>
-	
-	<footer class="max-w-xl mx-auto mt-16 mb-4 px-2 text-slate-800 dark:text-slate-200">
-		Isham Faizal | {#each links as link, i}
-			<a class="underline text-sky-700 dark:text-sky-300 hover:text-sky-500" href={link.url}>{link.label}</a>
-			{#if i < links.length - 1}
-				{' '}
-			{/if}
-		{/each}
+
+	<footer class="self-stretch mt-16 mb-4 px-2 text-slate-800 dark:text-slate-200">
+		<div class="max-w-xl mx-auto flex justify-between">
+			<div>
+				Isham Faizal | {#each links as link, i}
+					<a class="text-sky-700 dark:text-sky-300 hover:text-sky-500" href={link.url}
+						>{link.label}</a
+					>
+					{#if i < links.length - 1}
+						{' '}
+					{/if}
+				{/each}
+			</div>
+
+			<a
+				class=" text-sky-700 dark:text-sky-300 hover:text-sky-500"
+				href="https://github.com/ishamf/site">Source Code</a
+			>
+		</div>
 	</footer>
 </div>
-
-
-<style>
-</style>
