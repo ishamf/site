@@ -1,3 +1,4 @@
+import { parsePostMetadata } from '$lib/utils.js';
 import type { SvelteComponent } from 'svelte';
 
 export async function load({ params }) {
@@ -5,6 +6,6 @@ export async function load({ params }) {
 
 	return {
 		component: component.default as typeof SvelteComponent,
-		metadata: component.metadata,
+		metadata: parsePostMetadata({ slug: params.slug, metadata: component.metadata }),
 	};
 }

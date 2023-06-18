@@ -19,6 +19,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"@tailwindcss/typography": "^0.5.9",
+		"@types/luxon": "^3.3.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
@@ -46,6 +47,7 @@
 		}
 	},
 	"dependencies": {
-		"ajv": "^8.12.0"
+		"ajv": "^8.12.0",
+		"luxon": "^3.3.0"
 	}
 }

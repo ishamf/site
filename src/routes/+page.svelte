@@ -5,8 +5,8 @@
 	export let data: PageData;
 </script>
 
-<div class="flex max-w-5xl justify-evenly ml-auto mr-auto mt-10">
+<div class="mt-4">
 	{#each data.posts as post}
-		<Card title={post.title} link={`/e/${post.slug}`}></Card>
+		<Card {...post}></Card>
 	{/each}
 </div>

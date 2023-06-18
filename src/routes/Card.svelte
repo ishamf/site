@@ -1,11 +1,20 @@
 <script lang="ts">
+	import type { SvelteComponent } from 'svelte';
+	import PostHeading from '$lib/components/PostHeading.svelte';
+
 	export let title: string;
 	export let link: string;
+	export let created: Date;
+	export let previewComponent: typeof SvelteComponent;
 </script>
 
-<a
-	href={link}
-	class="grow-0 bg-white dark:bg-slate-700 rounded-lg shadow-lg p-6 hover:bg-gray-100 dark:hover:bg-slate-600 transition duration-150"
->
-	<h2 class="text-xl font-semibold dark:text-slate-200">{title}</h2>
-</a>
+<div class="rounded-lg max-w-xl mx-auto px-2">
+	<PostHeading {title} {link} {created} />
+
+	<div class="prose prose-slate dark:prose-invert font-sans mt-4 max-w-none">
+		<svelte:component this={previewComponent} />
+		<p>
+			<a href={link}>Read more...</a>
+		</p>
+	</div>
+</div>

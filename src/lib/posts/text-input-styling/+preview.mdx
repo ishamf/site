@@ -1,0 +1,21 @@
+<script lang="ts">
+	import CoveredInput from './CoveredInput.svelte';
+
+	let thirdValue =
+		'This is some text inside a text input which shows every word with "text" in it in red.' +
+		' You can edit the text and it will automatically update.';
+
+	$: transformedThirdValue = thirdValue.split(' ').map((text, i) => ({
+		text: i === 0 ? text : ' ' + text,
+		style: text.toLowerCase().includes('text') ? 'red' : 'normal',
+	}));
+</script>
+
+
+<CoveredInput
+	bind:value={thirdValue}
+	rows={3}
+	>{#each transformedThirdValue as elem}{#if elem.style === 'normal'}{elem.text}{:else}<span
+				class="text-red-500">{elem.text}</span
+			>{/if}{/each}</CoveredInput
+>
