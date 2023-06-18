@@ -7,3 +7,7 @@ export function getPosts() {
 
 	return posts;
 }
+
+export function getPostBySlug(slug: string) {
+	return getPosts().find((post) => post.slug === slug);
+}

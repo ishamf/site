@@ -3,7 +3,7 @@
 	import PostHeading from '$lib/components/PostHeading.svelte';
 
 	export let data: PageData;
-	$: ({ title, link, created } = data.metadata);
+	$: ({ title, link, created } = data.post);
 </script>
 
 <div class="max-w-xl mx-auto px-2 mt-4">

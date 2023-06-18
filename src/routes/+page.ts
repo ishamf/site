@@ -7,7 +7,7 @@ export async function load({ data }) {
 			data.posts.map(async (post) => {
 				return {
 					...post,
-					previewComponent: (await import(`../lib/posts/${post.slug}/+preview.mdx`))
+					previewComponent: (await import(`../lib/posts/${post.directory}/+preview.mdx`))
 						.default as typeof SvelteComponent,
 				};
 			})
