@@ -13,12 +13,12 @@ A spacecraft can install "thrusters" and "steering".
 Each component has a `thrust` or `turn` attribute,
 which is then used to calculate the acceleration or turn rate, based on the ship's mass.
 
-For forward flight, this is ok. 
+For forward flight, this is ok.
 But the turn rate would depend on the mounting positions of the thrusters,
 so you can't just use the ship's mass to calculate the turn rate.
 Also, if you have multiple rear "thrust" engines, turning only some of them on
-will 
+will
 
-If you want the most realistic flight maneuvering (which, to be fair, most games don't want), 
-you'll need to know the position of each thruster and its power. 
+If you want the most realistic flight maneuvering (which, to be fair, most games don't want),
+you'll need to know the position of each thruster and its power.
 Then, you need to translate the user's inputs (forward, turn left, etc) to the optimal power setting for each thruster.

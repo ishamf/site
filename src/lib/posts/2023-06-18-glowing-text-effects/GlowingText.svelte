@@ -21,12 +21,18 @@
 
 	export let color: string;
 	export let text: string;
-	export let lightnessOffset = 0.2
-	export let fontLightnessOffset = 0.2
+	export let lightnessOffset = 0.2;
+	export let fontLightnessOffset = 0.2;
 
 	$: colorObj = chroma(color);
-	$: lighterColor = colorObj.set('oklch.l', Math.max(colorObj.get('oklch.l') + lightnessOffset, lightnessOffset));
-	$: lighterFontColor = colorObj.set('oklch.l', Math.max(colorObj.get('oklch.l') + fontLightnessOffset, fontLightnessOffset));
+	$: lighterColor = colorObj.set(
+		'oklch.l',
+		Math.max(colorObj.get('oklch.l') + lightnessOffset, lightnessOffset)
+	);
+	$: lighterFontColor = colorObj.set(
+		'oklch.l',
+		Math.max(colorObj.get('oklch.l') + fontLightnessOffset, fontLightnessOffset)
+	);
 
 	let span: HTMLSpanElement;
 	let isActive = false;
