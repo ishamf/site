@@ -26,7 +26,7 @@ export function parsePostMetadata(
 
 	return {
 		...params.metadata,
-		link: `/e/${slug}`,
+		link: `/p/${slug}`,
 		slug,
 		created: new Date(params.metadata.created),
 	};
