@@ -1,6 +1,6 @@
 {
 	"files.associations": {
-		"*.mdx": "svelte"
+		"*.mdx": "markdown"
 	},
 	"[svelte]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

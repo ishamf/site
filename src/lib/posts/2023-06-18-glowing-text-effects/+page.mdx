@@ -4,14 +4,9 @@ title: Glowing Text Effects
 created: 2023-06-18T16:40:00+08:00
 ---
 
-<script
-	lang="ts"
->
-	import GlowingText from './GlowingText.svelte';
-
-	let resultColor = '#cc00cc';
-	let resultFontLightness = 0.1;
-	let resultLightness = 0.2;
+<script lang="ts">
+	import GlowingText from './GlowingText.svelte'; let resultColor = '#cc00cc'; let
+	resultFontLightness = 0.1; let resultLightness = 0.2;
 </script>
 
 <style>
@@ -47,22 +42,20 @@ created: 2023-06-18T16:40:00+08:00
 	}
 </style>
 
+I've been reading [The Wandering Inn](https://wanderinginn.com/) recently.
+In this story, the author does not limit themselves to regular white text on black background.
+They will emphasize some unique or magical words by using <span style="color: #990099">different colors</span>.
+Later on, they used <span style="font-family: serif; font-size: 1.05em">different fonts</span>
+and even some <span class="moving-text">animated text</span>
+. <span class="text-slate-50 dark:text-slate-800">In some scenes involving invisible characters,
+the text is actually invisible.</span>
 
-I've been reading [The Wandering Inn](https://wanderinginn.com/) recently. 
-In this story, the author does not limit themselves to regular white text on black background. 
-They will emphasize some unique or magical words by using <!-- prettier-ignore --><span style="color: #990099">different colors</span>. 
-Later on, they used <!-- prettier-ignore --><span style="font-family: serif; font-size: 1.05em">different fonts</span>
-and even some <!-- prettier-ignore --><span class="moving-text">animated text</span>
-. <!-- prettier-ignore --><span class="text-slate-50 dark:text-slate-800">In some scenes involving invisible characters, 
-    the text is actually invisible.</span>
-
-There's a scene involving some magical documents where the characters remark that the text in it is glowing. 
-Although it's written <!-- prettier-ignore --><span style="color:#f29b68">in a different color</span>, 
+There's a scene involving some magical documents where the characters remark that the text in it is glowing.
+Although it's written <span style="color:#f29b68">in a different color</span>,
 I thought it's a shame there isn't actually any glowing effect. So I thought it would be cool to make one.
 
-
-What would be an appropriate glow effect? You can make 
-a <!-- prettier-ignore --><span class="static-glow">static glow effect</span>
+What would be an appropriate glow effect? You can make
+a <span class="static-glow">static glow effect</span>
 easily enough by using `text-shadow` with a high blur.
 But this glow is less "magical text" and more "neon sign".
 
@@ -70,18 +63,16 @@ I decided the magical text should have an uneven glow that is constantly changin
 and animate their `text-shadow` separately, since you need to have a different duration and start time for each of them.
 
 ```html
-<span
-	class="glowing-text"
-	><span style="animation-delay: -1.00s; animation-duration: 1.28s">T</span><span
-		style="animation-delay: -1.31s; animation-duration: 1.39s">h</span
-	><span style="animation-delay: -0.37s; animation-duration: 1.02s">i</span><span
-		style="animation-delay: -1.70s; animation-duration: 1.14s">s</span
-	>
-    <!-- You probably will have to do this programatically -->
+<span class="glowing-text"
+	><span style="animation-delay: -1.00s; animation-duration: 1.28s">T</span
+	><span style="animation-delay: -1.31s; animation-duration: 1.39s">h</span
+	><span style="animation-delay: -0.37s; animation-duration: 1.02s">i</span
+	><span style="animation-delay: -1.70s; animation-duration: 1.14s">s</span>
+	<!-- You probably will have to do this programatically -->
 </span>
 ```
 
-I also animated the font color a bit. To get the appropriate color from the original one, I used [chroma-js](https://github.com/gka/chroma.js) to increase the lightness 
+I also animated the font color a bit. To get the appropriate color from the original one, I used [chroma-js](https://github.com/gka/chroma.js) to increase the lightness
 in [`oklch`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch). This color is also used in some of the `text-shadow`s.
 
 ```css
@@ -120,7 +111,7 @@ in [`oklch`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
 }
 ```
 
-This is the result. <!-- prettier-ignore --><span class="hidden dark:inline">It looks best on dark backgrounds.</span>
+This is the result. <span class="hidden dark:inline">It looks best on dark backgrounds.</span>
 
 <GlowingText
 	color={resultColor}
@@ -131,42 +122,40 @@ This is the result. <!-- prettier-ignore --><span class="hidden dark:inline">It 
 
 <p class="dark:hidden"> It looks best on dark backgrounds: </p>
 
-<div
-	class="bg-slate-800 p-4 dark:hidden"
->
+<div class="bg-slate-800 p-4 dark:hidden">
 	<GlowingText
 		color={resultColor}
 		lightnessOffset={resultLightness}
 		fontLightnessOffset={resultFontLightness}
 		text="This text is glowing magically"
-		
 	/>
 </div>
 
 Customise it!
-	- Color: 
-<input type="color" bind:value={resultColor} class="w-8 ml-2 my-0 h-8 align-middle" />
-	- Lighten glow color by:
-<input
-	type="number"
-	step="0.01"
-	bind:value={resultLightness}
-	min="0"
-	max="0.5"
-	class="w-16 ml-2 my-0"
-/>
-	- Lighten font color by:
-<input
-	type="number"
-	step="0.01"
-	bind:value={resultFontLightness}
-	min="0"
-	max="0.5"
-	class="w-16 ml-2 my-0"
-/>
-    
-When I started reading TWI, I wondered why the author decided to use black background by default. 
-Then the colored text started appearing, and it makes sense.
+
+- Color:
+  <input type="color" bind:value={resultColor} class="w-8 ml-2 my-0 h-8 align-middle" />
+- Lighten glow color by:
+  <input
+  	type="number"
+  	step="0.01"
+  	bind:value={resultLightness}
+  	min="0"
+  	max="0.5"
+  	class="w-16 ml-2 my-0"
+  />
+- Lighten font color by:
+  <input
+  	type="number"
+  	step="0.01"
+  	bind:value={resultFontLightness}
+  	min="0"
+  	max="0.5"
+  	class="w-16 ml-2 my-0"
+  />
+
+When I started reading TWI, I wondered why the author decided to use black background by default. Then
+the colored text started appearing, and it makes sense.
 
 If you have a lot of these animated text, the animations will take a significant amount of CPU time.
 You can disable them when they're outside the viewport using `InteractionObserver`.
@@ -175,16 +164,16 @@ You can disable them when they're outside the viewport using `InteractionObserve
 const observer = new IntersectionObserver(callback, options);
 
 function callback(entries) {
-  entries.forEach((entry) => {
-	if (entry.isIntersecting) {
-	  entry.target.classList.add("glowing-text");
-	} else {
-	  entry.target.classList.remove("glowing-text");
-	}
-  });
+	entries.forEach((entry) => {
+		if (entry.isIntersecting) {
+			entry.target.classList.add('glowing-text');
+		} else {
+			entry.target.classList.remove('glowing-text');
+		}
+	});
 }
 
-observer.observe(animatedTextSpan)
+observer.observe(animatedTextSpan);
 ```
 
 [You can check out the final component here.](https://github.com/ishamf/site/blob/main/src/lib/posts/2023-06-18-text-character-animation/GlowingText.svelte)

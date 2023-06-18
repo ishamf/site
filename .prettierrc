@@ -9,14 +9,6 @@
 		{
 			"files": "*.svelte",
 			"options": { "parser": "svelte" }
-		},
-		{
-			"files": "*.mdx",
-			"options": {
-				"parser": "svelte-customised-for-mdsvex",
-				"svelteSortOrder": "none",
-				"htmlWhitespaceSensitivity": "strict"
-			}
 		}
 	]
 }

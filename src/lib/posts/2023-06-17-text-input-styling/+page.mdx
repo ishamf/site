@@ -28,10 +28,7 @@ created: 2023-06-17T11:00:00+08:00
 
 Using CSS, we can make the content of text inputs look identical to regular text.
 
-<input
-	class="dark:bg-slate-900 bg-slate-100 p-1"
-	bind:value={firstValue}
-/>
+<input class="dark:bg-slate-900 bg-slate-100 p-1" bind:value={firstValue} />
 
 <p>
 	<span class="p-1">{firstValue}</span>
@@ -39,10 +36,7 @@ Using CSS, we can make the content of text inputs look identical to regular text
 
 What if we put the text directly on the input element, and make the actual input text invisible?
 
-<CoveredInput
-	bind:value={secondValue}
-	rows={2}
->
+<CoveredInput bind:value={secondValue} rows={2}>
 	{secondValue}
 </CoveredInput>
 
@@ -57,7 +51,7 @@ This doesn't look like much now, but we can transform the value before rendering
 			>{/if}{/each}</CoveredInput
 >
 
-Unlike other approaches like using a contenteditable div, you can render the content using React/Svelte, since the user won't edit the elements directly.
+Unlike other approaches like using a `contenteditable` div, you can render the content using React/Svelte, since the user won't edit the elements directly.
 
 But, there's a lot of edge cases with this approach:
 
