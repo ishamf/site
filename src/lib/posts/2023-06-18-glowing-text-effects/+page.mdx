@@ -27,6 +27,12 @@ created: 2023-06-18T16:40:00+08:00
 		color: transparent;
 	}
 
+	@media (prefers-color-scheme: dark) {
+		.moving-text {
+			--moving-color: white;
+		}
+	}
+
 	@keyframes moving-text {
 		from {
 			text-shadow: 0 -4px 0 var(--moving-color);
@@ -142,7 +148,7 @@ Customise it!
   	bind:value={resultLightness}
   	min="0"
   	max="0.5"
-  	class="w-16 ml-2 my-0"
+  	class="w-16 ml-2 my-0 dark:bg-slate-600"
   />
 - Lighten font color by:
   <input
@@ -151,7 +157,7 @@ Customise it!
   	bind:value={resultFontLightness}
   	min="0"
   	max="0.5"
-  	class="w-16 ml-2 my-0"
+  	class="w-16 ml-2 my-0 dark:bg-slate-600"
   />
 
 When I started reading TWI, I wondered why the author decided to use black background by default. Then
@@ -176,4 +182,4 @@ function callback(entries) {
 observer.observe(animatedTextSpan);
 ```
 
-[You can check out the final component here.](https://github.com/ishamf/site/blob/main/src/lib/posts/2023-06-18-text-character-animation/GlowingText.svelte)
+[You can check out the final component here.](https://github.com/ishamf/site/blob/main/src/lib/posts/2023-06-18-glowing-text-effects/GlowingText.svelte)
