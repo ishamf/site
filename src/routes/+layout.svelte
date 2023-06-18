@@ -35,7 +35,7 @@
 						>{link.label}</a
 					>
 					{#if i < links.length - 1}
-						{' '}
+						{' - '}
 					{/if}
 				{/each}
 			</div>
