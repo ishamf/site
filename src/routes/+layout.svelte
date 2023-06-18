@@ -8,7 +8,9 @@
 	];
 
 	$: title = $page.data.pageTitle ? `${$page.data.pageTitle} | ishamf.com` : 'ishamf.com';
-	$: description = $page.data.pageDescription ? $page.data.pageDescription : 'Homepage of ishamf.com';
+	$: description = $page.data.pageDescription
+		? $page.data.pageDescription
+		: 'Homepage of ishamf.com';
 </script>
 
 <svelte:head>
@@ -40,10 +42,13 @@
 				{/each}
 			</div>
 
-			<a
-				class=" text-sky-700 dark:text-sky-300 hover:text-sky-500"
-				href="https://github.com/ishamf/site">Source Code</a
-			>
+			<div>
+				<a class="text-sky-700 dark:text-sky-300 hover:text-sky-500" href="/rss">RSS</a> -
+				<a
+					class="text-sky-700 dark:text-sky-300 hover:text-sky-500"
+					href="https://github.com/ishamf/site">Source Code</a
+				>
+			</div>
 		</div>
 	</footer>
 </div>
