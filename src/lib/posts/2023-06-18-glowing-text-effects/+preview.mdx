@@ -1,3 +1,3 @@
 <script>import GlowingText from './GlowingText.svelte';</script>
 
-Making text that <GlowingText color="#009944" text="glow" fontLightnessOffset={0.1} />.
+Making text that <span class="dark:hidden"><GlowingText color="#009944" text="glow" fontLightnessOffset={0.1} /></span><span class="hidden dark:inline"><GlowingText color="#ff55ff" text="glow" fontLightnessOffset={0.2} /></span>.
