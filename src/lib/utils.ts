@@ -8,6 +8,9 @@ const postMetadataSchema = {
 		slug: { type: 'string' },
 		created: { type: 'timestamp' },
 	},
+	optionalProperties: {
+		draft: { type: 'boolean' },
+	},
 } as const;
 
 type PostMetadata = JTDDataType<typeof postMetadataSchema>;
@@ -28,6 +31,6 @@ export function parsePostMetadata(params: { metadata: unknown; path: string }) {
 		...metadata,
 		link: `/p/${slug}`,
 		created: new Date(created),
-		directory
+		directory,
 	};
 }

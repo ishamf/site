@@ -6,7 +6,10 @@
 </script>
 
 <div class="mt-4">
-	{#each data.posts as post}
-		<Card {...post}></Card>
+	{#each data.posts as post, i}
+		{#if i > 0}
+			<div class="mt-8" />
+		{/if}
+		<Card {...post} />
 	{/each}
 </div>

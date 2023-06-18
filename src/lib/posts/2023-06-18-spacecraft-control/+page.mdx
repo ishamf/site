@@ -1,0 +1,24 @@
+---
+slug: spacecraft-control
+title: Realistic Spacecraft Maneuvering
+created: 2023-06-18T16:00:00+08:00
+draft: true
+---
+
+In a lot of games, the movement of spaceships is defined by the developer separately from the design.
+Spacecraft X has 200 acceleration, 100 turn rate, 500 top speed, etc.
+
+If the spacecraft is customisable, it might be derived from its components, such as in [Endless Sky](https://github.com/endless-sky/endless-sky/).
+A spacecraft can install "thrusters" and "steering".
+Each component has a `thrust` or `turn` attribute,
+which is then used to calculate the acceleration or turn rate, based on the ship's mass.
+
+For forward flight, this is ok. 
+But the turn rate would depend on the mounting positions of the thrusters,
+so you can't just use the ship's mass to calculate the turn rate.
+Also, if you have multiple rear "thrust" engines, turning only some of them on
+will 
+
+If you want the most realistic flight maneuvering (which, to be fair, most games don't want), 
+you'll need to know the position of each thruster and its power. 
+Then, you need to translate the user's inputs (forward, turn left, etc) to the optimal power setting for each thruster.
