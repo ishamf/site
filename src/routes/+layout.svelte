@@ -8,10 +8,12 @@
 	];
 
 	$: title = $page.data.pageTitle ? `${$page.data.pageTitle} | ishamf.com` : 'ishamf.com';
+	$: description = $page.data.pageDescription ? $page.data.pageDescription : 'Homepage of ishamf.com';
 </script>
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="description" content={description} />
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">

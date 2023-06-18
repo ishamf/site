@@ -7,6 +7,7 @@ const postMetadataSchema = {
 		title: { type: 'string' },
 		slug: { type: 'string' },
 		created: { type: 'timestamp' },
+		description: { type: 'string' },
 	},
 	optionalProperties: {
 		draft: { type: 'boolean' },
