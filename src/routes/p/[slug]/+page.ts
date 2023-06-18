@@ -1,4 +1,3 @@
-import { parsePostMetadata } from '$lib/utils.js';
 import type { SvelteComponent } from 'svelte';
 
 export async function load({ data }) {
