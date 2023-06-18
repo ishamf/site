@@ -1,11 +1,18 @@
 <script>
+	import { page } from '$app/stores';
 	import '../app.css';
 
 	const links = [
 		{ url: 'https://github.com/ishamf', label: 'GitHub' },
 		{ url: 'https://www.linkedin.com/in/ishamf/', label: 'LinkedIn' },
 	];
+
+	$: title = $page.data.pageTitle ? `${$page.data.pageTitle} | ishamf.com` : 'ishamf.com';
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 <div class="min-h-screen flex flex-col">
 	<main class="mt-10 flex-grow">

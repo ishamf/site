@@ -11,5 +11,5 @@ export function load({ params }) {
 		throw error(404, { message: `Post not found` });
 	}
 
-	return { post };
+	return { post, pageTitle: post.title };
 }
