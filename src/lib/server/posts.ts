@@ -12,5 +12,5 @@ export function getPosts({ draft = false }: { draft?: boolean } = {}) {
 }
 
 export function getPostBySlug(slug: string) {
-	return getPosts({draft: true}).find((post) => post.slug === slug);
+	return getPosts({ draft: true }).find((post) => post.slug === slug);
 }

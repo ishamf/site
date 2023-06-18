@@ -14,6 +14,7 @@
 
 	<textarea
 		{rows}
+		placeholder="Type stuff here!"
 		class="p-1 input bg-transparent"
 		class:force-caret-white={caretColor === 'white'}
 		bind:value

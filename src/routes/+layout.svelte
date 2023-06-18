@@ -8,10 +8,14 @@
 	];
 
 	$: title = $page.data.pageTitle ? `${$page.data.pageTitle} | ishamf.com` : 'ishamf.com';
+	$: description = $page.data.pageDescription
+		? $page.data.pageDescription
+		: 'Homepage of ishamf.com';
 </script>
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="description" content={description} />
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">
@@ -33,15 +37,18 @@
 						>{link.label}</a
 					>
 					{#if i < links.length - 1}
-						{' '}
+						{' - '}
 					{/if}
 				{/each}
 			</div>
 
-			<a
-				class=" text-sky-700 dark:text-sky-300 hover:text-sky-500"
-				href="https://github.com/ishamf/site">Source Code</a
-			>
+			<div>
+				<a class="text-sky-700 dark:text-sky-300 hover:text-sky-500" href="/rss">RSS</a> -
+				<a
+					class="text-sky-700 dark:text-sky-300 hover:text-sky-500"
+					href="https://github.com/ishamf/site">Source Code</a
+				>
+			</div>
 		</div>
 	</footer>
 </div>
