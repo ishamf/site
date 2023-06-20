@@ -11,27 +11,27 @@
 
 	let url: URLElement = initialPrefillUrl ? parseUrlToElement(initialPrefillUrl) : { value: '' };
 
-	let result: string = '';
+	let result = '';
 
-	$: {
-		function parseURL(url: URLElement): string {
-			let currentURL: URL;
-			try {
-				currentURL = new URL(url.value);
-			} catch (e) {
-				return url.value;
-			}
-
-			if (url.params) {
-				for (const { key, url: subURL } of url.params) {
-					if (!key) continue;
-					currentURL.searchParams.append(key, parseURL(subURL));
-				}
-			}
-
-			return currentURL.toString().replace(/^possible-url:\/\//, '');
+	function parseURL(url: URLElement): string {
+		let currentURL: URL;
+		try {
+			currentURL = new URL(url.value);
+		} catch (e) {
+			return url.value;
 		}
 
+		if (url.params) {
+			for (const { key, url: subURL } of url.params) {
+				if (!key) continue;
+				currentURL.searchParams.append(key, parseURL(subURL));
+			}
+		}
+
+		return currentURL.toString().replace(/^possible-url:\/\//, '');
+	}
+
+	$: {
 		result = parseURL(url);
 	}
 
@@ -57,7 +57,7 @@
 
 	let showQRCode = false;
 
-	let currentQRCodeImage: string = '';
+	let currentQRCodeImage = '';
 
 	$: {
 		if (showQRCode && result) {
