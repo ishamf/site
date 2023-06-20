@@ -4,15 +4,20 @@
 
 	export let title: string;
 	export let link: string;
+	export let description: string;
 	export let created: Date;
-	export let previewComponent: typeof SvelteComponent;
+	export let previewComponent: typeof SvelteComponent | undefined;
 </script>
 
 <div class="rounded-lg max-w-xl mx-auto px-2">
 	<PostHeading {title} {link} {created} />
 
 	<div class="prose prose-slate dark:prose-invert font-sans mt-4 max-w-none">
-		<svelte:component this={previewComponent} />
+		{#if previewComponent}
+			<svelte:component this={previewComponent} />
+		{:else}
+			<p>{description}</p>
+		{/if}
 		<p>
 			<a href={link}>Read more...</a>
 		</p>

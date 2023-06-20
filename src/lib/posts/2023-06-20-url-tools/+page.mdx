@@ -1,0 +1,46 @@
+---
+slug: url-tools
+title: URL Contructor Tool
+created: 2023-06-20T21:00:00+08:00
+description: >
+  A tool to generate URLs with complex parameters. It can also be used to generate and open deep links and generate QR codes.
+---
+
+Construct URLs with recursive parameters,
+
+1. Enter some initial URL.
+2. Add query parameters.
+3. If the parameter value is a valid URL, you'll be able to add params to it.
+
+<script lang="ts">
+	import URLTool from './URLTool.svelte'; import {browser} from '$app/environment';
+</script>
+
+{#if browser}
+
+<URLTool />
+
+{:else}
+
+<p>Loading URL tool...</p>
+
+{/if}
+
+In my work, sometimes I need to construct complicated URLs with multiple parameters,
+and those parameters can be URLs with their own parameters.
+There's not really a lot of tools to support this, so I usually have to do the encoding and formatting manually.
+
+Since it seems easy enough to implement, I decided to create one as a post here. I also added a few helpful features.
+
+### Opening as URL
+
+In mobile, copy-pasting the URL in the browser and clicking a link can have different behavior, depending on which app is registered.
+So I added a link to test this case.
+
+### Generating QR Code
+
+Another common case is to generate QR code for a URL. It's a simple library import to implement.
+
+### Sharing a URL to this Page
+
+Sometimes you intend for other people to open the URL. In that case, you can share a link to this page.
