@@ -2,7 +2,7 @@ import { getPosts } from '$lib/server/posts';
 import { Feed } from 'feed';
 
 export async function GET() {
-	const posts = getPosts();
+	const posts = await getPosts();
 
 	const feed = new Feed({
 		id: 'https://ishamf.com/',

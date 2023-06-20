@@ -7,8 +7,10 @@ export async function load({ data }) {
 			data.posts.map(async (post) => {
 				return {
 					...post,
-					previewComponent: (await import(`../lib/posts/${post.directory}/+preview.mdx`))
-						.default as typeof SvelteComponent,
+					previewComponent: post.hasPreview
+						? ((await import(`../lib/posts/${post.directory}/+preview.mdx`))
+								.default as typeof SvelteComponent)
+						: undefined,
 				};
 			})
 		),
