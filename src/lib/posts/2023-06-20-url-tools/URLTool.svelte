@@ -75,7 +75,7 @@
 
 <p
 	class="p-4 flex-1 bg-slate-100 dark:bg-slate-700"
-	class:text-slate-600={!result}
+	class:text-slate-400={!result}
 	class:dark:text-slate-400={!result}
 >
 	{result ? result : 'The results will appear here'}
