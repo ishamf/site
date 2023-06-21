@@ -8,9 +8,10 @@ description: >
 
 Construct URLs with recursive parameters,
 
-1. Enter some initial URL.
+1. Enter a URL.
 2. Add query parameters.
 3. If the parameter value is a valid URL, you'll be able to add params to it.
+4. If you enter a URL that already has some params, you can parse it.
 
 <script lang="ts">
 	import URLTool from './URLTool.svelte'; import {browser} from '$app/environment';
@@ -39,7 +40,7 @@ So I added a link to test this case.
 
 ### Generating QR Code
 
-Another common case is to generate QR code for a URL. It's a simple library import to implement.
+Another common case is to generate QR code for a URL, to easily open it in a mobile device.
 
 ### Sharing a URL to this Page
 
