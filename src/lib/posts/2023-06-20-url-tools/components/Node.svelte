@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { mdiPlus, mdiClose } from '@mdi/js';
+	import { mdiPlus, mdiClose, mdiSetSplit } from '@mdi/js';
 	import type { URLElement } from '../types';
 	import Button from './Button.svelte';
 	import Input from './Input.svelte';
+	import { parseUrlToElement } from '../utils';
 
 	export let key: string | null;
 	export let url: URLElement;
@@ -13,6 +14,8 @@
 	const dispatch = createEventDispatcher();
 
 	let isValidURL = false;
+	let hasEmbeddedParams = false;
+	let parsedUrl: URL | null = null;
 
 	$: isRootNode = typeof key !== 'string';
 	$: shouldShowAddButton = isValidURL && (!url.params || url.params.length === 0);
@@ -20,10 +23,13 @@
 
 	$: {
 		try {
-			new URL(url.value);
+			parsedUrl = new URL(url.value);
 			isValidURL = true;
+			hasEmbeddedParams = parsedUrl.searchParams.size > 0;
 		} catch (e) {
+			parsedUrl = null;
 			isValidURL = false;
+			hasEmbeddedParams = false;
 		}
 	}
 
@@ -65,6 +71,28 @@
 							},
 						},
 					];
+				}}
+			/>
+		{/if}
+
+		{#if hasEmbeddedParams}
+			<div class="mr-4" />
+			<Button
+				title="Parse params"
+				icon={mdiSetSplit}
+				disabled={disabled || !isValidURL}
+				on:click={() => {
+					if (!parsedUrl) return;
+					url.params = [
+						...(Array.from(parsedUrl.searchParams.entries()).map(([key, value]) => ({
+							key,
+							url: parseUrlToElement(value),
+						})) ?? []),
+						...(url.params ?? []),
+					];
+					const urlWithoutParams = new URL(parsedUrl);
+					urlWithoutParams.search = '';
+					url.value = urlWithoutParams.toString();
 				}}
 			/>
 		{/if}
