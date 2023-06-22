@@ -89,3 +89,4 @@ jobs:
           accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
           directory: .svelte-kit/cloudflare
+          branch: ${{ github.ref_type == 'tag' && 'main' || github.ref_name }}
