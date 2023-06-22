@@ -1,6 +1,8 @@
 import { getPosts } from '$lib/server/posts';
 import { Feed } from 'feed';
 
+export const prerender = true;
+
 export async function GET() {
 	const posts = await getPosts();
 
@@ -25,5 +27,3 @@ export async function GET() {
 
 	return new Response(feed.rss2());
 }
-
-export const prerender = true;
