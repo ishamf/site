@@ -9,17 +9,19 @@
 	export let previewComponent: typeof SvelteComponent | undefined;
 </script>
 
-<div class="rounded-lg max-w-xl mx-auto px-2">
-	<PostHeading {title} {link} {created} />
+<div class="mt-4 bg-slate-50 dark:bg-slate-800 mx-auto py-12 max-w-2xl">
+	<div class="max-w-xl mx-auto px-2">
+		<PostHeading {title} {link} {created} />
 
-	<div class="prose prose-slate dark:prose-invert font-sans mt-4 max-w-none">
-		{#if previewComponent}
-			<svelte:component this={previewComponent} />
-		{:else}
-			<p>{description}</p>
-		{/if}
-		<p>
-			<a href={link}>Read more...</a>
-		</p>
+		<div class="prose prose-slate dark:prose-invert font-sans mt-4 max-w-none">
+			{#if previewComponent}
+				<svelte:component this={previewComponent} />
+			{:else}
+				<p>{description}</p>
+			{/if}
+			<p>
+				<a href={link}>Read more...</a>
+			</p>
+		</div>
 	</div>
 </div>
