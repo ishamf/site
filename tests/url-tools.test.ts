@@ -20,7 +20,7 @@ test('url parsing', async ({ page }) => {
 	await page.getByPlaceholder('Enter URL...').fill('https://google.com/?query=Test+Query');
 	await page.getByRole('button', { name: 'Parse params' }).click();
 
-	await expect(page.getByPlaceholder('Enter URL...')).toContainText('https://google.com/');
-	await expect(page.getByPlaceholder('Key...').first()).toContainText('query');
-	await expect(page.getByPlaceholder('Value...').first()).toContainText('Test Query');
+	await expect(page.getByPlaceholder('Enter URL...')).toHaveValue('https://google.com/');
+	await expect(page.getByPlaceholder('Key...').first()).toHaveValue('query');
+	await expect(page.getByPlaceholder('Value...').first()).toHaveValue('Test Query');
 });
