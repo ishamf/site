@@ -6,9 +6,11 @@
 	$: ({ title, link, created } = data.post);
 </script>
 
-<div class="max-w-xl mx-auto px-2 mt-4">
-	<PostHeading {title} {link} {created} />
-	<div class="prose prose-slate dark:prose-invert font-sans mx-auto mt-4 max-w-none">
-		<svelte:component this={data.component} />
+<div class="mt-4 bg-slate-50 dark:bg-slate-800 mx-auto py-12 max-w-2xl">
+	<div class="max-w-xl mx-auto px-2">
+		<PostHeading {title} {link} {created} />
+		<div class="prose prose-slate dark:prose-invert font-sans mx-auto mt-4 max-w-none">
+			<svelte:component this={data.component} />
+		</div>
 	</div>
 </div>
