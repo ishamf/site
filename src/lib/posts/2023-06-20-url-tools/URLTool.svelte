@@ -125,7 +125,7 @@
 			}
 		}}
 	>
-		Share URL to this page
+		{hasCopiedShareUrl ? 'Shared URL copied!' : 'Share URL to this page'}
 	</TextButton>
 </div>
 
