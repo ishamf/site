@@ -1,3 +1,11 @@
-<script>import GlowingText from './GlowingText.svelte';</script>
+<script>import GlowingTextPrecalculated from './GlowingTextPrecalculated.svelte';</script>
 
-Making text that <span class="dark:hidden"><GlowingText color="#009944" text="glow" fontLightnessOffset={0.1} /></span><span class="hidden dark:inline"><GlowingText color="#ff55ff" text="glow" fontLightnessOffset={0.2} /></span>.
+<p>
+	Making text that
+	<span class="dark:hidden">
+		<GlowingTextPrecalculated color="#009944" text="glow" lighterColor="oklch(0.7967 0.1656 149.68)" lighterFontColor="oklch(0.6967 0.1656 149.68)" /><!--
+    --></span><!--
+	--><span class="hidden dark:inline">
+		<GlowingTextPrecalculated color="#ff55ff" text="glow" lighterColor="oklch(0.9401 0.2718 327.9)" lighterFontColor="oklch(0.9401 0.2718 327.9)" /><!--
+	--></span>.
+</p>
