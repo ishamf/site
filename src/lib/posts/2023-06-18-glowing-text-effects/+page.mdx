@@ -6,9 +6,13 @@ description: >
   Making text that glow.
 ---
 
+<!-- prettier-ignore -->
 <script lang="ts">
-	import GlowingText from './GlowingText.svelte'; let resultColor = '#cc00cc'; let
-	resultFontLightness = 0.1; let resultLightness = 0.2;
+	import GlowingText from './GlowingText.svelte';
+	import {browser} from '$app/environment';
+	let resultColor = '#cc00cc';
+	let resultFontLightness = 0.1;
+	let resultLightness = 0.2;
 </script>
 
 <style>
@@ -140,6 +144,9 @@ This is the result. <span class="hidden dark:inline">It looks best on dark backg
 </div>
 
 Customise it!
+{#if !browser}
+This only works with JavaScript though, seems you haven't finished loading it or it's disabled.
+{/if}
 
 - Color:
   <input type="color" bind:value={resultColor} class="w-8 ml-2 my-0 h-8 align-middle" />

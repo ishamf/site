@@ -1,9 +1,11 @@
 <script lang="ts">
 	import CoveredInput from './CoveredInput.svelte';
+	import {browser} from '$app/environment';
 
 	let thirdValue =
 		'This is some text inside a text input which shows every word with "text" in it in red.' +
-		' You can edit the text and it will automatically update.';
+		' You can edit the text and it will automatically update.' 
+		+ (browser ? '' : ` This only works with JavaScript though, seems you haven't finished loading it or it's disabled.`);
 
 	$: transformedThirdValue = thirdValue.split(' ').map((text, i) => ({
 		text: i === 0 ? text : ' ' + text,
@@ -14,6 +16,7 @@
 <CoveredInput
 	bind:value={thirdValue}
 	rows={3}
+	disabled={!browser}
 	>{#each transformedThirdValue as elem}{#if elem.style === 'normal'}{elem.text}{:else}<span
 				class="text-red-500">{elem.text}</span
 			>{/if}{/each}</CoveredInput

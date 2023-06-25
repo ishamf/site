@@ -8,6 +8,7 @@ description: >
 
 <script lang="ts">
 	import CoveredInput from './CoveredInput.svelte';
+	import {browser} from '$app/environment';
 
 	let firstValue = 'This is some text inside a text input';
 	let secondValue =
@@ -35,6 +36,11 @@ Using CSS, we can make the content of text inputs look identical to regular text
 <p>
 	<span class="p-1">{firstValue}</span>
 </p>
+
+{#if !browser}
+(The inputs on this page only works with Javascript, seems you haven't finished loading it or it's disabled.)
+
+{/if}
 
 What if we put the text directly on the input element, and make the actual input text invisible?
 

@@ -35,7 +35,7 @@
 	);
 
 	let span: HTMLSpanElement;
-	let isActive = false;
+	let isActive = !observer; // Turn it on by default on SSR
 
 	onMount(() => {
 		if (!observer) return;
