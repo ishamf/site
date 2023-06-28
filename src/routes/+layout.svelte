@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import PageOverlay from '$lib/components/PageOverlay.svelte';
 	import '../app.css';
 
 	const links = [
@@ -18,7 +19,7 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col isolate">
 	<main class="mt-10 flex-grow">
 		<a href="/"
 			><h1 class="text-center text-2xl text-slate-800 dark:text-slate-100 font-mono">
@@ -52,3 +53,5 @@
 		</div>
 	</footer>
 </div>
+
+<PageOverlay />
