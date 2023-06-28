@@ -75,7 +75,7 @@ $ proot-distro login debian --user and
 and@localhost:~$
 ```
 
-## `code-server`
+## code-server
 
 If your preferred editor runs on the terminal, you probably don't need to do anything extra to start using it.
 However, I want to use VS Code on it.
@@ -99,3 +99,30 @@ Then, I just need to run the `code-server` command, and open `localhost:8080` (t
 And it works! I actually wrote this entire post so far in android.
 
 ![Writing this entire post in android]({postInAndroid})
+
+## Challenges
+
+There's a few annoying things that I haven't managed to solve yet.
+
+### Browser
+
+Ironically, running the actual developer tools that you need to build and run your app seems to be the easy part. Running VS Code is trickier.
+
+Even after getting `code-server` running, the VS Code UI doesn't work perfectly on mobile browsers. Here's a few issues I found from quickly trying a few browsers:
+
+- Chrome (and a few other chromium-based browsers like Bromite): The mouse hover is not affecting the UI.
+- Firefox: Right click doesn't work.
+- Samsung Internet:
+  - Cannot copy-paste to the terminal.
+  - `Enter` to accept suggestions doesn't work.
+  - Some shortcuts are intercepted by the browser.
+
+In the end, I chose Samsung Internet since its problems at least have workarounds.
+I rarely copy-paste to the terminal anyway,
+and you can work around it by using the on screen keyboard's clipboard feature to type it in.
+You can also use other buttons to trigger the intercepted actions.
+
+### Dev Tools
+
+The android browsers don't have developer tools. I think I can use [Eruda](https://github.com/liriliri/eruda) for that,
+but somehow it doesn't work on the DeX browsers (even on its own site).
