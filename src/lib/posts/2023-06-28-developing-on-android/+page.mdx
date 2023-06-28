@@ -110,7 +110,7 @@ Ironically, running the actual developer tools that you need to build and run yo
 
 Even after getting `code-server` running, the VS Code UI doesn't work perfectly on mobile browsers. Here's a few issues I found from quickly trying a few browsers:
 
-- Chrome (and a few other chromium-based browsers like Bromite): The mouse hover is not affecting the UI.
+- Chrome (and a few other chromium-based browsers like Bromite): The mouse hover is not affecting the UI. This actually applies to all websites.
 - Firefox: Right click doesn't work.
 - Samsung Internet:
   - Cannot copy-paste to the terminal.
@@ -126,7 +126,9 @@ You can also use other buttons to trigger the intercepted actions.
 
 A physical keyboard and mouse is basically required. There's a few things you can't do without it. You can type, but I haven't found a keyboard where the function keys or `Ctrl-Shift-P` work. Also, you can't use the touchscreen to select text.
 
-### Dev Tools
+### Web Dev Tools
 
-The android browsers don't have developer tools. I think I can use [Eruda](https://github.com/liriliri/eruda) for that,
-but somehow it doesn't work on the DeX browsers (even on its own site).
+Most android browsers don't have web developer tools. The only one I found is [Kiwi Browser](https://github.com/kiwibrowser/src.next).
+However, since it's based on chromium, it also cannot show mouse hovers, so you won't be able to fully test desktop websites.
+
+I also tried to use [Eruda](https://github.com/liriliri/eruda), but seems it currently has a bug where it cannot be opened with the mouse on DeX browsers.
