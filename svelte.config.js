@@ -25,6 +25,9 @@ const config = {
 				type: 'yaml',
 				marker: '-',
 			},
+			layout: {
+				_: './src/lib/DefaultMDXLayout.svelte',
+			},
 		}),
 	],
 
