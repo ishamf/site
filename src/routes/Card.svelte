@@ -6,7 +6,7 @@
   export let link: string;
   export let description: string;
   export let created: Date;
-  export let previewComponent: typeof SvelteComponent | undefined;
+  export let previewComponent: typeof SvelteComponent<Record<string, never>> | undefined;
 </script>
 
 <div class="mt-4 bg-slate-50 dark:bg-slate-800 mx-auto py-12 max-w-2xl">

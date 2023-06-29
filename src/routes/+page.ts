@@ -9,7 +9,7 @@ export async function load({ data }) {
           ...post,
           previewComponent: post.hasPreview
             ? ((await import(`../lib/posts/${post.directory}/+preview.mdx`))
-                .default as typeof SvelteComponent)
+                .default as typeof SvelteComponent<Record<string, never>>)
             : undefined,
         };
       })
