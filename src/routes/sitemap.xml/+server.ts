@@ -3,10 +3,10 @@ import { getPosts } from '$lib/server/posts';
 export const prerender = true;
 
 export async function GET() {
-	const posts = await getPosts();
+  const posts = await getPosts();
 
-	return new Response(
-		`
+  return new Response(
+    `
 		<?xml version="1.0" encoding="UTF-8" ?>
 		<urlset
 			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -20,19 +20,19 @@ export async function GET() {
 				<loc>https://ishamf.com</loc>
 			</url>
 			${posts
-				.map(
-					(post) => `
+        .map(
+          (post) => `
 				<url>
 					<loc>https://ishamf.com/p/${post.slug}</loc>
 				</url>
 			`
-				)
-				.join('')}
+        )
+        .join('')}
 		</urlset>`.trim(),
-		{
-			headers: {
-				'Content-Type': 'application/xml',
-			},
-		}
-	);
+    {
+      headers: {
+        'Content-Type': 'application/xml',
+      },
+    }
+  );
 }
