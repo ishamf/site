@@ -1,138 +1,138 @@
 <script lang="ts">
-	import QRCode from 'qrcode';
+  import QRCode from 'qrcode';
 
-	import Node from './components/Node.svelte';
-	import TextButton from './components/TextButton.svelte';
+  import Node from './components/Node.svelte';
+  import TextButton from './components/TextButton.svelte';
 
-	import type { URLElement } from './types';
-	import { parseUrlToElement } from './utils';
+  import type { URLElement } from './types';
+  import { parseUrlToElement } from './utils';
 
-	const initialPrefillUrl = new URL(location.href).searchParams.get('prefillUrl');
+  const initialPrefillUrl = new URL(location.href).searchParams.get('prefillUrl');
 
-	let url: URLElement = initialPrefillUrl ? parseUrlToElement(initialPrefillUrl) : { value: '' };
+  let url: URLElement = initialPrefillUrl ? parseUrlToElement(initialPrefillUrl) : { value: '' };
 
-	let result = '';
+  let result = '';
 
-	function parseURL(url: URLElement): string {
-		let currentURL: URL;
-		try {
-			currentURL = new URL(url.value);
-		} catch (e) {
-			return url.value;
-		}
+  function parseURL(url: URLElement): string {
+    let currentURL: URL;
+    try {
+      currentURL = new URL(url.value);
+    } catch (e) {
+      return url.value;
+    }
 
-		if (url.params) {
-			for (const { key, url: subURL } of url.params) {
-				if (!key) continue;
-				currentURL.searchParams.append(key, parseURL(subURL));
-			}
-		}
+    if (url.params) {
+      for (const { key, url: subURL } of url.params) {
+        if (!key) continue;
+        currentURL.searchParams.append(key, parseURL(subURL));
+      }
+    }
 
-		return currentURL.toString().replace(/^possible-url:\/\//, '');
-	}
+    return currentURL.toString().replace(/^possible-url:\/\//, '');
+  }
 
-	$: {
-		result = parseURL(url);
-	}
+  $: {
+    result = parseURL(url);
+  }
 
-	let hasCopied = false;
+  let hasCopied = false;
 
-	$: {
-		if (hasCopied) {
-			setTimeout(() => {
-				hasCopied = false;
-			}, 1000);
-		}
-	}
+  $: {
+    if (hasCopied) {
+      setTimeout(() => {
+        hasCopied = false;
+      }, 1000);
+    }
+  }
 
-	let hasCopiedShareUrl = false;
+  let hasCopiedShareUrl = false;
 
-	$: {
-		if (hasCopiedShareUrl) {
-			setTimeout(() => {
-				hasCopiedShareUrl = false;
-			}, 1000);
-		}
-	}
+  $: {
+    if (hasCopiedShareUrl) {
+      setTimeout(() => {
+        hasCopiedShareUrl = false;
+      }, 1000);
+    }
+  }
 
-	let showQRCode = false;
+  let showQRCode = false;
 
-	let currentQRCodeImage = '';
+  let currentQRCodeImage = '';
 
-	$: {
-		if (showQRCode && result) {
-			QRCode.toDataURL(result, {
-				type: 'image/png',
-				errorCorrectionLevel: 'M',
-			}).then((code) => {
-				currentQRCodeImage = code;
-			});
-		}
-	}
+  $: {
+    if (showQRCode && result) {
+      QRCode.toDataURL(result, {
+        type: 'image/png',
+        errorCorrectionLevel: 'M',
+      }).then((code) => {
+        currentQRCodeImage = code;
+      });
+    }
+  }
 </script>
 
 <Node key={null} bind:url />
 
 <p
-	class="p-4 flex-1 bg-slate-100 dark:bg-slate-700"
-	class:text-slate-400={!result}
-	class:dark:text-slate-400={!result}
+  class="p-4 flex-1 bg-slate-100 dark:bg-slate-700"
+  class:text-slate-400={!result}
+  class:dark:text-slate-400={!result}
 >
-	{result ? result : 'The results will appear here'}
+  {result ? result : 'The results will appear here'}
 </p>
 
 <div class="flex flex-row flex-wrap">
-	<a
-		href={result}
-		rel="nofollow noreferrer external"
-		class="p-4 m-4 no-underline font-normal
+  <a
+    href={result}
+    rel="nofollow noreferrer external"
+    class="p-4 m-4 no-underline font-normal
              bg-slate-100 hover:bg-slate-200 text-slate-800
              dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-300
          "
-	>
-		Open URL
-	</a>
-	<TextButton
-		on:click={async () => {
-			try {
-				await navigator.clipboard.writeText(result);
-				hasCopied = true;
-			} catch (e) {
-				console.error(e);
-			}
-		}}
-	>
-		{hasCopied ? 'Copied!' : 'Copy URL'}
-	</TextButton>
-	<TextButton
-		on:click={async () => {
-			showQRCode = !showQRCode;
-		}}
-	>
-		{showQRCode ? 'Hide QR Code' : 'Show QR Code'}
-	</TextButton>
-	<TextButton
-		on:click={async () => {
-			const shareUrl = new URL(location.href);
+  >
+    Open URL
+  </a>
+  <TextButton
+    on:click={async () => {
+      try {
+        await navigator.clipboard.writeText(result);
+        hasCopied = true;
+      } catch (e) {
+        console.error(e);
+      }
+    }}
+  >
+    {hasCopied ? 'Copied!' : 'Copy URL'}
+  </TextButton>
+  <TextButton
+    on:click={async () => {
+      showQRCode = !showQRCode;
+    }}
+  >
+    {showQRCode ? 'Hide QR Code' : 'Show QR Code'}
+  </TextButton>
+  <TextButton
+    on:click={async () => {
+      const shareUrl = new URL(location.href);
 
-			shareUrl.searchParams.set('prefillUrl', result);
+      shareUrl.searchParams.set('prefillUrl', result);
 
-			try {
-				await navigator.clipboard.writeText(shareUrl.toString());
-				hasCopiedShareUrl = true;
-			} catch (e) {
-				console.error(e);
-			}
-		}}
-	>
-		{hasCopiedShareUrl ? 'Shared URL copied!' : 'Share URL to this page'}
-	</TextButton>
+      try {
+        await navigator.clipboard.writeText(shareUrl.toString());
+        hasCopiedShareUrl = true;
+      } catch (e) {
+        console.error(e);
+      }
+    }}
+  >
+    {hasCopiedShareUrl ? 'Shared URL copied!' : 'Share URL to this page'}
+  </TextButton>
 </div>
 
 {#if showQRCode}
-	<div class="mx-auto h-48 w-48 bg-white">
-		{#if currentQRCodeImage}
-			<img class="my-0 h-48" src={currentQRCodeImage} alt="QR Code" />
-		{/if}
-	</div>
+  <div class="mx-auto h-48 w-48 bg-white">
+    {#if currentQRCodeImage}
+      <img class="my-0 h-48" src={currentQRCodeImage} alt="QR Code" />
+    {/if}
+  </div>
 {/if}

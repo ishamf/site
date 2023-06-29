@@ -34,7 +34,7 @@ Using CSS, we can make the content of text inputs look identical to regular text
 <input class="dark:bg-slate-900 bg-slate-100 p-1" bind:value={firstValue} />
 
 <p>
-	<span class="p-1">{firstValue}</span>
+  <span class="p-1">{firstValue}</span>
 </p>
 
 {#if !browser}
@@ -45,7 +45,7 @@ Using CSS, we can make the content of text inputs look identical to regular text
 What if we put the text directly on the input element, and make the actual input text invisible?
 
 <CoveredInput bind:value={secondValue} rows={2}>
-	{secondValue}
+  {secondValue}
 </CoveredInput>
 
 This doesn't look like much now, but we can transform the value before rendering, adding

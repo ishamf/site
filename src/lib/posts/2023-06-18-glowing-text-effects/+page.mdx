@@ -76,11 +76,11 @@ and animate their `text-shadow` separately, since you need to have a different d
 
 ```html
 <span class="glowing-text"
-	><span style="animation-delay: -1.00s; animation-duration: 1.28s">T</span
-	><span style="animation-delay: -1.31s; animation-duration: 1.39s">h</span
-	><span style="animation-delay: -0.37s; animation-duration: 1.02s">i</span
-	><span style="animation-delay: -1.70s; animation-duration: 1.14s">s</span>
-	<!-- You probably will have to do this programatically -->
+  ><span style="animation-delay: -1.00s; animation-duration: 1.28s">T</span
+  ><span style="animation-delay: -1.31s; animation-duration: 1.39s">h</span
+  ><span style="animation-delay: -0.37s; animation-duration: 1.02s">i</span
+  ><span style="animation-delay: -1.70s; animation-duration: 1.14s">s</span>
+  <!-- You probably will have to do this programatically -->
 </span>
 ```
 
@@ -91,56 +91,56 @@ in [`oklch`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
 /* --lighter-color and --lighter-font-color is set by js */
 
 .glowing-text span {
-	animation: waverShadow infinite, waverText infinite;
+  animation: waverShadow infinite, waverText infinite;
 }
 
 @keyframes waverShadow {
-	from {
-		text-shadow: 0px 0px 10px currentColor, 0px 0px 10px var(--lighter-color);
-	}
+  from {
+    text-shadow: 0px 0px 10px currentColor, 0px 0px 10px var(--lighter-color);
+  }
 
-	50% {
-		text-shadow: 0px 0px 10px currentColor, 0px 0px 20px var(--lighter-color);
-	}
+  50% {
+    text-shadow: 0px 0px 10px currentColor, 0px 0px 20px var(--lighter-color);
+  }
 
-	to {
-		text-shadow: 0px 0px 10px currentColor, 0px 0px 10px var(--lighter-color);
-	}
+  to {
+    text-shadow: 0px 0px 10px currentColor, 0px 0px 10px var(--lighter-color);
+  }
 }
 
 @keyframes waverText {
-	from {
-		color: currentColor;
-	}
+  from {
+    color: currentColor;
+  }
 
-	50% {
-		color: var(--lighter-font-color);
-	}
+  50% {
+    color: var(--lighter-font-color);
+  }
 
-	to {
-		color: currentColor;
-	}
+  to {
+    color: currentColor;
+  }
 }
 ```
 
 This is the result. <span class="hidden dark:inline">It looks best on dark backgrounds.</span>
 
 <GlowingText
-	color={resultColor}
-	lightnessOffset={resultLightness}
-	fontLightnessOffset={resultFontLightness}
-	text="This text is glowing magically"
+  color={resultColor}
+  lightnessOffset={resultLightness}
+  fontLightnessOffset={resultFontLightness}
+  text="This text is glowing magically"
 />
 
 <p class="dark:hidden"> It looks best on dark backgrounds: </p>
 
 <div class="bg-slate-800 p-4 dark:hidden">
-	<GlowingText
-		color={resultColor}
-		lightnessOffset={resultLightness}
-		fontLightnessOffset={resultFontLightness}
-		text="This text is glowing magically"
-	/>
+  <GlowingText
+    color={resultColor}
+    lightnessOffset={resultLightness}
+    fontLightnessOffset={resultFontLightness}
+    text="This text is glowing magically"
+  />
 </div>
 
 Customise it!
@@ -152,21 +152,21 @@ This only works with JavaScript though, seems you haven't finished loading it or
   <input type="color" bind:value={resultColor} class="w-8 ml-2 my-0 h-8 align-middle" />
 - Lighten glow color by:
   <input
-  	type="number"
-  	step="0.01"
-  	bind:value={resultLightness}
-  	min="0"
-  	max="0.5"
-  	class="w-16 ml-2 my-0 dark:bg-slate-600"
+    type="number"
+    step="0.01"
+    bind:value={resultLightness}
+    min="0"
+    max="0.5"
+    class="w-16 ml-2 my-0 dark:bg-slate-600"
   />
 - Lighten font color by:
   <input
-  	type="number"
-  	step="0.01"
-  	bind:value={resultFontLightness}
-  	min="0"
-  	max="0.5"
-  	class="w-16 ml-2 my-0 dark:bg-slate-600"
+    type="number"
+    step="0.01"
+    bind:value={resultFontLightness}
+    min="0"
+    max="0.5"
+    class="w-16 ml-2 my-0 dark:bg-slate-600"
   />
 
 When I started reading TWI, I wondered why the author decided to use black background by default. Then
@@ -179,13 +179,13 @@ You can disable them when they're outside the viewport using `InteractionObserve
 const observer = new IntersectionObserver(callback, options);
 
 function callback(entries) {
-	entries.forEach((entry) => {
-		if (entry.isIntersecting) {
-			entry.target.classList.add('glowing-text');
-		} else {
-			entry.target.classList.remove('glowing-text');
-		}
-	});
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('glowing-text');
+    } else {
+      entry.target.classList.remove('glowing-text');
+    }
+  });
 }
 
 observer.observe(animatedTextSpan);
