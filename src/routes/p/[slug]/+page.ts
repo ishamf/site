@@ -5,6 +5,6 @@ export async function load({ data }) {
 
   return {
     ...data,
-    component: component.default as typeof SvelteComponent,
+    component: component.default as typeof SvelteComponent<Record<string, never>>,
   };
 }

@@ -19,6 +19,7 @@
   <div
     class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center cursor-pointer"
     tabindex="-1"
+    role="button"
     on:click={dismiss}
     on:keydown={dismiss}
     bind:this={overlay}
