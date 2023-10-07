@@ -7,11 +7,15 @@
   import type { URLElement } from './types';
   import { parseUrlToElement } from './utils';
 
-  const initialPrefillUrl = new URL(location.href).searchParams.get('prefillUrl');
+  const initialPrefillUrl = new URL(location.href).searchParams.get('url');
 
   let url: URLElement = initialPrefillUrl ? parseUrlToElement(initialPrefillUrl) : { value: '' };
 
   let result = '';
+
+  export function setUrl(newUrl: string) {
+    url = parseUrlToElement(newUrl);
+  }
 
   function parseURL(url: URLElement): string {
     let currentURL: URL;
@@ -28,11 +32,19 @@
       }
     }
 
-    return currentURL.toString().replace(/^possible-url:\/\//, '');
+    return currentURL.toString();
   }
 
   $: {
     result = parseURL(url);
+  }
+
+  $: {
+    if (result) {
+      history.replaceState(null, '', `?url=${encodeURIComponent(result)}`);
+    } else {
+      history.replaceState(null, '', ``);
+    }
   }
 
   let hasCopied = false;
@@ -74,7 +86,7 @@
 <Node key={null} bind:url />
 
 <p
-  class="p-4 flex-1 bg-slate-100 dark:bg-slate-700"
+  class="p-4 flex-1 bg-slate-100 dark:bg-slate-700 overflow-hidden break-all"
   class:text-slate-400={!result}
   class:dark:text-slate-400={!result}
 >
@@ -113,12 +125,8 @@
   </TextButton>
   <TextButton
     on:click={async () => {
-      const shareUrl = new URL(location.href);
-
-      shareUrl.searchParams.set('prefillUrl', result);
-
       try {
-        await navigator.clipboard.writeText(shareUrl.toString());
+        await navigator.clipboard.writeText(location.href);
         hasCopiedShareUrl = true;
       } catch (e) {
         console.error(e);

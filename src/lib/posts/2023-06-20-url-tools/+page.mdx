@@ -14,12 +14,24 @@ Construct URLs with recursive parameters,
 4. If you enter a URL that already has some params, you can parse it.
 
 <script lang="ts">
-  import URLTool from './URLTool.svelte'; import {browser} from '$app/environment';
+  import URLTool from './URLTool.svelte'; import {browser} from '$app/environment'; let urlTool;
+  const testUrl =
+  'https://archive.org/wayback/available?url=https%3A%2F%2Fen.wikipedia.org%2Fw%2Findex.php%3Ftitle%3DWayback_Machine%26action%3Dhistory'
 </script>
 
 {#if browser}
 
-<URLTool />
+<a
+  role="button"
+  href={'#'}
+  on:click={() => {
+    urlTool?.setUrl(testUrl);
+  }}
+>
+  Try it out with a complex url!
+</a>
+
+<URLTool bind:this={urlTool} />
 
 {:else}
 
