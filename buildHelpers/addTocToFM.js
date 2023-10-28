@@ -4,15 +4,8 @@ import { slug } from 'github-slugger';
 
 /**
  * Add table of contents to frontmatter.
- *
- * @param {any} options
  */
-export default function addTocToFM(options) {
-  const settings = {
-    ...options,
-    tight: options && typeof options.tight === 'boolean' ? options.tight : true,
-  };
-
+export default function addTocToFM() {
   /**
    * Transform.
    *
