@@ -39,11 +39,11 @@ async function hasImports(directory: string) {
 
 /**
  * Get posts based on the files in the posts directory.
- * 
+ *
  * +page.mdx: the page itself
  * +preview.mdx: preview of the page (optional, will use "description" if not present)
  * +imports.ts: imports for the page, mainly for required web components (optional)
- * 
+ *
  * The logic to use these files is in src/routes/p/[slug]/*.
  */
 export async function getPosts({ draft = false }: { draft?: boolean } = {}) {

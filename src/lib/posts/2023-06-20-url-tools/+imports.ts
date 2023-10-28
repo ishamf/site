@@ -1,1 +1,1 @@
-import "./PageUI.svelte"
+import './PageUI.svelte';

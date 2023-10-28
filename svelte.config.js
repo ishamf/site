@@ -43,8 +43,8 @@ const config = {
     }),
 
     alias: {
-      "@/*": "src/lib/*",
-    }
+      '@/*': 'src/lib/*',
+    },
   },
 };
 

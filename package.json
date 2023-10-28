@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "prepare": "husky install",
     "preview": "vite preview",
     "test": "playwright test",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -17,6 +18,20 @@
     "test:unit": "vitest",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint"
+    ],
+    "*.svelte": [
+      "prettier --write",
+      "eslint"
+    ]
   },
   "devDependencies": {
     "@playwright/test": "^1.28.1",
@@ -32,7 +47,9 @@
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte": "^2.30.0",
+    "husky": "^8.0.3",
     "js-yaml": "^4.1.0",
+    "lint-staged": "^15.0.2",
     "mdsvex": "^0.10.6",
     "postcss": "^8.4.24",
     "prettier": "^2.8.0",
