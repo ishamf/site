@@ -44,7 +44,7 @@
   }
 
   .toc-nav {
-    @apply sticky top-4 mt-32 mr-4;
+    @apply sticky top-4 mt-32 mr-8;
   }
 
   @container (width < 150px) {
