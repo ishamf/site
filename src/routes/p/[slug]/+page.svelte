@@ -1,21 +1,45 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import PostHeading from '$lib/components/PostHeading.svelte';
+  import { onMount } from 'svelte';
 
   export let data: PageData;
   $: ({ title, link, created, toc = [] } = data.post);
+
+  let scrollPosition = 0;
+  let idPositions: Record<string, number> = {};
+
+  onMount(() => {
+    const listener = () => {
+      scrollPosition = window.scrollY;
+    };
+
+    document.addEventListener('scroll', listener);
+
+    for (const item of toc) {
+      const element = document.getElementById(item.slug);
+      if (!element) continue;
+      idPositions[item.slug] = element.getBoundingClientRect().top + window.scrollY;
+    }
+
+    return () => {
+      document.removeEventListener('scroll', listener);
+    };
+  });
 </script>
 
 <div class="flex flex-row w-screen">
   <div class="side-item flex flex-row justify-end items-start">
     <nav class="toc-nav">
       <ul>
-        {#each toc as tocItem}
+        {#each toc as tocItem, i}
           <li
-            class="my-4 toc-item
+            class="py-4 toc-item
               text-sm
               text-slate-600 dark:text-slate-400
               hover:text-slate-800 dark:hover:text-slate-200"
+            class:current-item={scrollPosition >= idPositions[tocItem.slug] &&
+              (i === toc.length - 1 || scrollPosition < idPositions[toc[i + 1].slug])}
             style={`margin-left: ${tocItem.level - 1}rem`}
           >
             <a href={`#${tocItem.slug}`}>
@@ -44,7 +68,15 @@
   }
 
   .toc-nav {
-    @apply sticky top-4 mt-32 mr-8;
+    @apply sticky top-4 mt-32 mx-8;
+  }
+
+  .current-item {
+    @apply text-slate-800 dark:text-slate-100;
+  }
+
+  .current-item a {
+    @apply cursor-default;
   }
 
   @container (width < 150px) {
