@@ -2,8 +2,8 @@
   import { createEventDispatcher } from 'svelte';
   import { mdiPlus, mdiClose, mdiSetSplit } from '@mdi/js';
   import type { URLElement } from '../types';
-  import Button from './Button.svelte';
-  import Input from './Input.svelte';
+  import Button from '@/components/Button.svelte';
+  import Input from '@/components/Input.svelte';
   import { parseUrlToElement } from '../utils';
 
   export let key: string | null;
