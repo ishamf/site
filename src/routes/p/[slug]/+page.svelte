@@ -41,7 +41,6 @@
   .side-item {
     flex: 1 1;
     container-type: inline-size;
-    overflow: hidden;
   }
 
   .toc-nav {
