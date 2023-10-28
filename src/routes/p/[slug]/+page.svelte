@@ -87,8 +87,7 @@
   }
 
   .toc-item {
-    @apply 
-      my-4 text-sm
+    @apply my-4 text-sm
       text-slate-600 dark:text-slate-400
       hover:text-slate-800 dark:hover:text-slate-200;
 
