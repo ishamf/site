@@ -12,6 +12,15 @@ const postMetadataSchema = {
   },
   optionalProperties: {
     draft: { type: 'boolean' },
+    toc: {
+      elements: {
+        properties: {
+          level: { type: 'uint32' },
+          text: { type: 'string' },
+          slug: { type: 'string' },
+        },
+      },
+    },
   },
 } as const;
 
