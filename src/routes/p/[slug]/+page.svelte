@@ -34,10 +34,7 @@
       <ul>
         {#each toc as tocItem, i}
           <li
-            class="py-4 toc-item
-              text-sm
-              text-slate-600 dark:text-slate-400
-              hover:text-slate-800 dark:hover:text-slate-200"
+            class="toc-item"
             class:current-item={scrollPosition >= idPositions[tocItem.slug] &&
               (i === toc.length - 1 || scrollPosition < idPositions[toc[i + 1].slug])}
             style={`margin-left: ${tocItem.level - 1}rem`}
@@ -50,7 +47,7 @@
       </ul>
     </nav>
   </div>
-  <div class="content mt-4 bg-white dark:bg-slate-800 mx-auto py-12 max-w-3xl">
+  <div class="content overflow-hidden mt-4 bg-white dark:bg-slate-800 mx-auto py-12 max-w-3xl">
     <div class="max-w-2xl mx-auto px-2">
       <PostHeading {title} {link} {created} />
       <div class="prose prose-slate dark:prose-invert font-sans mx-auto mt-4 max-w-none">
@@ -90,6 +87,11 @@
   }
 
   .toc-item {
+    @apply 
+      my-4 text-sm
+      text-slate-600 dark:text-slate-400
+      hover:text-slate-800 dark:hover:text-slate-200;
+
     display: list-item;
     list-style-type: '- ';
   }
