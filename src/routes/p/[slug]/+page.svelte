@@ -26,6 +26,8 @@
       document.removeEventListener('scroll', listener);
     };
   });
+
+  $: currentItemSlug = toc.findLast((item) => scrollPosition >= idPositions[item.slug] - 10)?.slug;
 </script>
 
 <div class="flex flex-row w-screen">
@@ -35,8 +37,7 @@
         {#each toc as tocItem, i}
           <li
             class="toc-item"
-            class:current-item={scrollPosition >= idPositions[tocItem.slug] - 10 &&
-              (i === toc.length - 1 || scrollPosition < idPositions[toc[i + 1].slug] - 10)}
+            class:current-item={tocItem.slug === currentItemSlug}
             style={`margin-left: ${tocItem.level - 1}rem`}
           >
             <a href={`#${tocItem.slug}`}>
