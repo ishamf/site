@@ -35,8 +35,8 @@
         {#each toc as tocItem, i}
           <li
             class="toc-item"
-            class:current-item={scrollPosition >= idPositions[tocItem.slug] &&
-              (i === toc.length - 1 || scrollPosition < idPositions[toc[i + 1].slug])}
+            class:current-item={scrollPosition >= idPositions[tocItem.slug] - 10 &&
+              (i === toc.length - 1 || scrollPosition < idPositions[toc[i + 1].slug] - 10)}
             style={`margin-left: ${tocItem.level - 1}rem`}
           >
             <a href={`#${tocItem.slug}`}>
@@ -68,14 +68,6 @@
     @apply sticky top-4 mt-32 mx-8;
   }
 
-  .current-item {
-    @apply text-slate-800 dark:text-slate-100;
-  }
-
-  .current-item a {
-    @apply cursor-default;
-  }
-
   @container (width < 150px) {
     .toc-nav {
       display: none;
@@ -89,9 +81,17 @@
   .toc-item {
     @apply my-4 text-sm
       text-slate-600 dark:text-slate-400
-      hover:text-slate-800 dark:hover:text-slate-200;
+      hover:text-slate-900 dark:hover:text-slate-200;
 
     display: list-item;
     list-style-type: '- ';
+
+    &.current-item {
+      @apply font-bold text-slate-900 dark:text-slate-100;
+
+      & a {
+        @apply cursor-default;
+      }
+    }
   }
 </style>
