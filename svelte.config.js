@@ -2,6 +2,9 @@ import adapter from '@sveltejs/adapter-static';
 import { mdsvex } from 'mdsvex';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import yaml from 'js-yaml';
+import slug from 'rehype-slug';
+
+import addTocToFM from './buildHelpers/addTocToFM.js';
 
 export function htmlCommentIgnoringFormatter(value, messages) {
   try {
@@ -28,15 +31,25 @@ const config = {
       layout: {
         _: './src/lib/DefaultMDXLayout.svelte',
       },
+      remarkPlugins: [addTocToFM],
+      rehypePlugins: [slug],
     }),
   ],
 
   extensions: ['.svelte', '.mdx'],
 
+  compilerOptions: {
+    customElement: true,
+  },
+
   kit: {
     adapter: adapter({
       pages: '.svelte-kit/cloudflare',
     }),
+
+    alias: {
+      '@/*': 'src/lib/*',
+    },
   },
 };
 

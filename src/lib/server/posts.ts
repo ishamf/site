@@ -12,6 +12,15 @@ const postMetadataSchema = {
   },
   optionalProperties: {
     draft: { type: 'boolean' },
+    toc: {
+      elements: {
+        properties: {
+          level: { type: 'uint32' },
+          text: { type: 'string' },
+          slug: { type: 'string' },
+        },
+      },
+    },
   },
 } as const;
 
@@ -28,6 +37,24 @@ async function hasPreview(directory: string) {
   }
 }
 
+async function hasImports(directory: string) {
+  try {
+    await import(`../posts/${directory}/+imports.ts`);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Get posts based on the files in the posts directory.
+ *
+ * +page.mdx: the page itself
+ * +preview.mdx: preview of the page (optional, will use "description" if not present)
+ * +imports.ts: imports for the page, mainly for required web components (optional)
+ *
+ * The logic to use these files is in src/routes/p/[slug]/*.
+ */
 export async function getPosts({ draft = false }: { draft?: boolean } = {}) {
   const rawPosts = await Promise.all(
     Object.entries(
@@ -50,6 +77,7 @@ export async function getPosts({ draft = false }: { draft?: boolean } = {}) {
         link: `/p/${slug}`,
         created: new Date(created),
         hasPreview: await hasPreview(directory),
+        hasImports: await hasImports(directory),
         directory,
       };
     })

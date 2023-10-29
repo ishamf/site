@@ -2,7 +2,7 @@
   import QRCode from 'qrcode';
 
   import Node from './components/Node.svelte';
-  import TextButton from './components/TextButton.svelte';
+  import TextButton from '../../components/TextButton.svelte';
 
   import type { URLElement } from './types';
   import { parseUrlToElement } from './utils';
