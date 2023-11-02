@@ -1,5 +1,3 @@
-<svelte:options customElement={{ tag: 'url-tool-page-ui', extend: addAppStyles }} />
-
 <script lang="ts">
   import URLTool from './URLTool.svelte';
   import { browser } from '$app/environment';
