@@ -38,10 +38,6 @@ const config = {
 
   extensions: ['.svelte', '.mdx'],
 
-  compilerOptions: {
-    customElement: true,
-  },
-
   kit: {
     adapter: adapter({
       pages: '.svelte-kit/cloudflare',
